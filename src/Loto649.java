@@ -15,13 +15,21 @@ public class Loto649 {
 		this.line_size = line_size;
 	}
 	
+	public static void main(String...args){
+		Loto649 thisgame = new Loto649();
+		thisgame.playGame(8,true);
+		thisgame.printGame();
+		thisgame.testDuplication();
+		
+	}
+	
 	private int getRandomNumber(){
 		Random r = new Random();
 		return (r.nextInt(49) + 1);
 	}	
 
 	private ArrayList<Integer> playLine(boolean unique_for_game){
-		
+	
 		ArrayList<Integer> line = new ArrayList<Integer>();
 		int this_number = this.getRandomNumber();
 		
@@ -30,10 +38,8 @@ public class Loto649 {
 		line.add(this_number);		
 		
 		for (int i = 1; i<line_size; i++){			
-			this_number = this.getRandomNumber();
-			
-			while (line.contains(this_number) || (this.isNumberInGame(this_number) && unique_for_game)){
-				//System.out.println(this_number + " is_picked = " + true);				
+			this_number = this.getRandomNumber();			
+			while (line.contains(this_number) || (this.isNumberInGame(this_number) && unique_for_game)){				
 				this_number = this.getRandomNumber();
 			}
 			line.add(this_number);
@@ -42,8 +48,7 @@ public class Loto649 {
 	}
 		
     private boolean isNumberInGame(int num){
-		for (ArrayList<Integer> line: this.games){
-			//System.out.println("Searching: " + Arrays.toString(line.toArray()));
+		for (ArrayList<Integer> line: this.games){			
 			if(line.contains(num))				
 				return true;
 		}
@@ -66,18 +71,20 @@ public class Loto649 {
 	}
 
 	private void testDuplication(){
-		
+		String result = "No duplicates founds.";
+		for (ArrayList<Integer> line: this.games){
+			for(Integer num: line){
+				for(ArrayList<Integer> line_search: this.games){
+					for(Integer num_search: line_search){
+						if (!line.equals(line_search) && num == num_search){
+							result = "At least 1 dup foud: " + num;
+							break;
+						}									
+					}
+				}
+			}		
+		}
+		System.out.println(result);
 	}
-
-	public static void main(String...args){
-		Loto649 thisgame = new Loto649();
-		thisgame.playGame(8,true);
-		thisgame.printGame();
-		
-	}
-
-	
-
-	
 
 }

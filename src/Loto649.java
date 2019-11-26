@@ -1,62 +1,83 @@
 import java.util.*;
 
 public class Loto649 {
+
 	public ArrayList<ArrayList<Integer>> games;
 	public int line_size = 6;
+
 	
 	public Loto649(){
-		this.games = new ArrayList<ArrayList<int>>();
-		
+		this.games = new ArrayList<ArrayList<Integer>>();		
+	}
+	
+	public Loto649(int line_size){
+		this();
+		this.line_size = line_size;
 	}
 	
 	private int getRandomNumber(){
 		Random r = new Random();
 		return (r.nextInt(49) + 1);
-	}
-	
-	private int[] playLine(boolean unique_for_game){
-		ArrayList<int> line = new ArrayList<int>();
-		int this_number = this.getRandomNumber();
-		line.add(this_number);
-		System.out.println(line.get(0));		
+	}	
+
+	private ArrayList<Integer> playLine(boolean unique_for_game){
 		
-		for (int i = 1; i<6; i++){			
+		ArrayList<Integer> line = new ArrayList<Integer>();
+		int this_number = this.getRandomNumber();
+		
+		while(unique_for_game && this.isNumberInGame(this_number))
 			this_number = this.getRandomNumber();
-			boolean is_picked = line.contains(this_number);			
-			while (is_picked){
+		line.add(this_number);		
+		
+		for (int i = 1; i<line_size; i++){			
+			this_number = this.getRandomNumber();
+			
+			while (line.contains(this_number) || (this.isNumberInGame(this_number) && unique_for_game)){
+				//System.out.println(this_number + " is_picked = " + true);				
 				this_number = this.getRandomNumber();
-				is_picked = line.contains(this_number);				
 			}
 			line.add(this_number);
 		}		
 		return line;
 	}
-	
-	
 		
-	public int playGame(int no_lines, boolean unique_all_lines){
-		int number;
-		for (int i = 0; i< no_lines; i++){
-			int[] this_line = new int[6];
-			this.games.add(this_line);
-			for (int j =1; j<= 6; j++){
-				boolean unique_in_line = true;
-				while (true){
-					int a = 1;
-				}
-			}
-			
+    private boolean isNumberInGame(int num){
+		for (ArrayList<Integer> line: this.games){
+			//System.out.println("Searching: " + Arrays.toString(line.toArray()));
+			if(line.contains(num))				
+				return true;
 		}
-		return 1;
+		return false;
+	}		
+		
+	public void playGame(int no_lines, boolean unique_all_lines){	
+		for (int i=0; i< no_lines; i++){
+			this.games.add(playLine(unique_all_lines));
+		}
 	}
 	
-	
-	
+	public void printGame(){
+		StringBuilder printer = new StringBuilder();
+		for (ArrayList<Integer> line: this.games){
+			printer.append(Arrays.toString(line.toArray()));
+			printer.append("\n");
+		}
+		System.out.print(printer);
+	}
+
+	private void testDuplication(){
+		
+	}
+
 	public static void main(String...args){
 		Loto649 thisgame = new Loto649();
-		System.out.println(Arrays.toString(thisgame.playLine(true)));
+		thisgame.playGame(8,true);
+		thisgame.printGame();
 		
 	}
+
 	
+
 	
+
 }

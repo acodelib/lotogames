@@ -23,10 +23,13 @@ public class Loto649 {
 		
 	}
 	
-	private int getRandomNumber(){
-		Random r = new Random();
-		return (r.nextInt(49) + 1);
-	}	
+	public ArrayList<ArrayList<Integer>> playGame(int no_lines, boolean unique_all_lines){	
+		for (int i=0; i< no_lines; i++){
+			this.games.add(playLine(unique_all_lines));
+		}
+		return this.games;
+	}
+	
 
 	private ArrayList<Integer> playLine(boolean unique_for_game){
 	
@@ -44,6 +47,7 @@ public class Loto649 {
 			}
 			line.add(this_number);
 		}		
+		Collections.sort(line);
 		return line;
 	}
 		
@@ -55,29 +59,30 @@ public class Loto649 {
 		return false;
 	}		
 		
-	public void playGame(int no_lines, boolean unique_all_lines){	
-		for (int i=0; i< no_lines; i++){
-			this.games.add(playLine(unique_all_lines));
-		}
-	}
+	private int getRandomNumber(){
+		Random r = new Random();
+		return (r.nextInt(49) + 1);
+	}	
+	
 	
 	public void printGame(){
 		StringBuilder printer = new StringBuilder();
 		for (ArrayList<Integer> line: this.games){
 			printer.append(Arrays.toString(line.toArray()));
 			printer.append("\n");
-		}
-		System.out.print(printer);
+		}		
+		System.out.print(printer.substring(0,printer.length() - 1));
 	}
 
+	// this must be moved to unit tests.
 	private void testDuplication(){
-		String result = "No duplicates founds.";
+		String result = "\nDuplication Test Result: No duplicates founds.";
 		for (ArrayList<Integer> line: this.games){
 			for(Integer num: line){
 				for(ArrayList<Integer> line_search: this.games){
 					for(Integer num_search: line_search){
 						if (!line.equals(line_search) && num == num_search){
-							result = "At least 1 dup foud: " + num;
+							result = "\nDuplication Test Result: At least 1 dup foud: " + num;
 							break;
 						}									
 					}

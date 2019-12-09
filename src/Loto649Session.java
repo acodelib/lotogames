@@ -1,22 +1,22 @@
 import java.util.*;
 
-public class Loto649 {
+public class Loto649Session {
 
 	public ArrayList<ArrayList<Integer>> games;
 	public int line_size = 6;
 
 	
-	public Loto649(){
+	public Loto649Session(){
 		this.games = new ArrayList<ArrayList<Integer>>();		
 	}
 	
-	public Loto649(int line_size){
+	public Loto649Session(int line_size){
 		this();
 		this.line_size = line_size;
 	}
 	
 	public static void main(String...args){
-		Loto649 thisgame = new Loto649();
+		Loto649Session thisgame = new Loto649Session();
 		thisgame.playGame(8,true);
 		thisgame.printGame();
 		thisgame.testDuplication();

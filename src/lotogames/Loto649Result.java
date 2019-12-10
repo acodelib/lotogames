@@ -1,6 +1,7 @@
 package lotogames;
 
 import java.util.*;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 //import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
@@ -10,6 +11,10 @@ import java.time.format.DateTimeFormatter;
 public class Loto649Result extends GameResult {
 
 	
+	public Loto649Result(ArrayList<Integer> local_line, LocalDateTime game_time) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void parseGameLine(ArrayList<Integer> numbers){
 		//parses all numbers in Loto649 result numbers and inserts correspondent in result;
 		int i = 0;

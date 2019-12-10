@@ -1,2 +1,0 @@
-# lotogames
-various loto games

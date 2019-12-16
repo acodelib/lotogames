@@ -1,6 +1,9 @@
 package lotogames;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Random;
 import java.time.LocalDateTime;
 
 public class Loto649Session extends LotoSession {
@@ -10,24 +13,28 @@ public class Loto649Session extends LotoSession {
 		thisgame.playGame(8,true);
 		thisgame.printGame();
 		thisgame.testDuplication();
-		
+		for(GameResult n: thisgame.game_results) {
+			System.out.println(n.gameToString().trim());
+		}
 	}
 	
 	public ArrayList<GameResult> playGame(int no_lines, boolean unique_all_lines){
+	//plays games by constraint of parameters
+		
 		LocalDateTime game_time = LocalDateTime.now();
 		
 		for (int i=0; i< no_lines; i++){
 			ArrayList<Integer> local_line = this.playLine(unique_all_lines);
 			this.games.add(local_line);
 			Loto649Result local_result = new Loto649Result(local_line,game_time);
-4			this.game_results.add(new Loto649Result().parseGameLine(local_line));
-		}
+			this.game_results.add(local_result);		}
 		return this.game_results;
 	}
 	
 
 	protected ArrayList<Integer> playLine(boolean unique_for_game){
-	
+	//generates the numbers for a game line
+		
 		ArrayList<Integer> line = new ArrayList<Integer>();
 		int this_number = this.getRandomNumber();
 		
@@ -42,12 +49,11 @@ public class Loto649Session extends LotoSession {
 			}
 			line.add(this_number);			
 		}		
-		Collections.sort(line);
-		this.game_results.add(new Loto649Result(line,LocalDateTime.now());
+		Collections.sort(line);		
 		return line;
 	}
 		
-    private boolean isNumberInGame(int num){
+    protected boolean isNumberInGame(int num){
 		for (ArrayList<Integer> line: this.games){			
 			if(line.contains(num))				
 				return true;

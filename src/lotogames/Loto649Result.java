@@ -1,6 +1,8 @@
 package lotogames;
 
-import java.util.*;
+import java.util.Map;
+import java.util.Iterator;
+import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -12,7 +14,8 @@ public class Loto649Result extends GameResult {
 
 	
 	public Loto649Result(ArrayList<Integer> local_line, LocalDateTime game_time) {
-		// TODO Auto-generated constructor stub
+		this.play_time = game_time;
+		this.parseGameLine(local_line);
 	}
 
 	public void parseGameLine(ArrayList<Integer> numbers){
@@ -37,7 +40,7 @@ public class Loto649Result extends GameResult {
 			printer.append(",");
 		}
 		printer.append("\n");
-		return printer.toString();
+		return printer.substring(0,printer.length()-2).toString();
 	}
 	
 

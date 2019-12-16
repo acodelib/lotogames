@@ -1,17 +1,17 @@
 package lotogames;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.time.LocalDateTime;
 
 
 
 public abstract class GameResult{
-	protected HashMap<String,Integer> items;	
+	protected LinkedHashMap<String,Integer> items;	
 	protected LocalDateTime play_time;
 	
 	public GameResult(){
-		this.items 		= new HashMap<String,Integer>();		
+		this.items 		= new LinkedHashMap<String,Integer>();		
 	}
 	
 	public GameResult(ArrayList<Integer> numbers, LocalDateTime play_time){

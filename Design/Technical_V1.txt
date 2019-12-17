@@ -2,8 +2,13 @@
 GameCore to orchestrate games by configs: run games sessions service, save results	
 	GameResult to store the result and date of draw in standard format
 	LotoSession to do the game: generate the play line as per request (config)
-	COMP to be interface with db: save games, save draws, check for results
 
 
 COMP to orchestrate mails: check incoming, send emails, parse emails and reply
 
+
+DbOps to orchestrate DB:	
+		read connection details for CONFIG file
+		operate physical PRIVATE details of DB: connection, recordset etc
+		PUBLIC method to receive LotoSession and GameResult (draws) and save it in table
+		PUBLIC method to receive Numbers and check against results table

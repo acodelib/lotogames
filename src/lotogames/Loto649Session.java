@@ -12,7 +12,7 @@ public class Loto649Session extends LotoSession {
 		Loto649Session thisgame = new Loto649Session();
 		thisgame.playGame(8,true);
 		thisgame.printGame();
-		thisgame.testDuplication();
+		thisgame.checkDuplication();
 		for(GameResult n: thisgame.game_results) {
 			System.out.println(n.gameToString().trim());
 		}
@@ -54,6 +54,8 @@ public class Loto649Session extends LotoSession {
 	}
 		
     protected boolean isNumberInGame(int num){
+    	//checks if parameter exists in this.games ArrayList
+    	
 		for (ArrayList<Integer> line: this.games){			
 			if(line.contains(num))				
 				return true;
@@ -62,12 +64,16 @@ public class Loto649Session extends LotoSession {
 	}		
 		
 	private int getRandomNumber(){
+		//just gets a number
+		
 		Random r = new Random();
 		return (r.nextInt(49) + 1);
 	}	
 	
 	
 	public void printGame(){
+		//prints the ArrayList<Integer> holding draw numbers
+		
 		StringBuilder printer = new StringBuilder();
 		for (ArrayList<Integer> line: this.games){
 			printer.append(Arrays.toString(line.toArray()));
@@ -76,8 +82,10 @@ public class Loto649Session extends LotoSession {
 		System.out.print(printer.substring(0,printer.length() - 1));
 	}
 
-	// this must be moved to unit tests.
-	private void testDuplication(){
+
+	private void checkDuplication(){
+		// this must be moved to unit tests?
+		
 		String result = "\nDuplication Test Result: No duplicates founds.";
 		for (ArrayList<Integer> line: this.games){
 			for(Integer num: line){

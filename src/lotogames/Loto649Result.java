@@ -22,7 +22,7 @@ public class Loto649Result extends GameResult {
 		//parses all numbers in Loto649 result numbers and inserts correspondent in result;
 		int i = 0;
 		for (Integer num: numbers){
-			this.items.put("#No " + i,num);
+			this.items.put("#No " + (i+1),num);
 			i ++;
 		}					
 	}

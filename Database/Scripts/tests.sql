@@ -1,0 +1,23 @@
+SELECT count(*) FROM game_plays gp;
+
+DELETE FROM game_plays;
+
+INSERT INTO game_plays (date,game,value_name,value)
+SELECT '2015-01-01T22:01:11.234', 1,'L 1',34
+UNION ALL
+SELECT '2016-01-01T22:01:11.234', 1,'L 2',12
+UNION ALL
+SELECT '2012-01-01T22:01:11.234', 1,'L 3',14
+UNION ALL
+SELECT '2019-01-01T22:01:11.234', 1,'L 4',1
+UNION ALL
+SELECT '2014-01-01T22:01:11.234', 1,'L 5',2
+UNION ALL
+SELECT '2017-01-01T22:01:11.234', 1,'L 6',49
+;
+
+SELECT * from game_plays gp 
+where DATETIME(gp.date) > DATETIME('2017-01-02T18:12:14')
+
+SELECT rowid FROM game_plays gp;
+SELECT * from game_core_ix gci

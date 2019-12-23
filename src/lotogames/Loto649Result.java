@@ -16,6 +16,7 @@ public class Loto649Result extends GameResult {
 	public Loto649Result(ArrayList<Integer> local_line, LocalDateTime game_time) {
 		this.play_time = game_time;
 		this.parseGameLine(local_line);
+		this.game_type = "Loto649";
 	}
 
 	public void parseGameLine(ArrayList<Integer> numbers){
@@ -30,7 +31,7 @@ public class Loto649Result extends GameResult {
 	public String gameToString(){
 		//prints the result in human readable format
 
-		StringBuilder printer = new StringBuilder("Game Played @");		
+		StringBuilder printer = new StringBuilder("Loto649 Played @");		
 		printer.append(this.play_time.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + " #Numbers: " );
 		
 		Iterator<?> it = this.items.entrySet().iterator();		
@@ -41,6 +42,24 @@ public class Loto649Result extends GameResult {
 		}
 		printer.append("\n");
 		return printer.substring(0,printer.length()-2).toString();
+	}
+	
+	public String gameToStringSimple(){
+		//prints the result in human readable format
+
+		StringBuilder printer = new StringBuilder("(");	
+		
+		
+		Iterator<?> it = this.items.entrySet().iterator();		
+		while(it.hasNext()){
+			Map.Entry<?,?> pair = (Map.Entry<?,?>)it.next();
+			printer.append(pair.getValue());
+			printer.append(",");
+		}		
+		printer.substring(0,printer.length()-2).toString();
+		printer.append(")\n");
+		
+		return printer.toString();
 	}
 	
 

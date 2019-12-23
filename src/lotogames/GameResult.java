@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public abstract class GameResult{
 	protected LinkedHashMap<String,Integer> items;	
 	protected LocalDateTime play_time;
+	protected String game_type;
 	
 	public GameResult(){
 		this.items 		= new LinkedHashMap<String,Integer>();		
@@ -25,6 +26,7 @@ public abstract class GameResult{
 	}
 	
 	public abstract String gameToString();
+	public abstract String gameToStringSimple();
 	public abstract void parseGameLine(ArrayList<Integer> numbers);
 	
 }

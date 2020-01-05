@@ -7,3 +7,4 @@ CREATE TABLE game_plays (
         value_name text,
         value int        
 );
+CREATE Index ixGamePlayDisplay ON game_plays(session_id,date,game_id);

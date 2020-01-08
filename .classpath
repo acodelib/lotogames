@@ -3,5 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/DIRECT/source_code/lotogames/sqlite-jdbc-3.27.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/DIRECT/source_code/lotogames/jsoup-1.12.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

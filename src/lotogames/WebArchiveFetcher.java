@@ -12,7 +12,7 @@ import org.jsoup.safety.Whitelist;
 import org.jsoup.select.Elements;
 
 
-public class ArchiveFetcher {
+public class WebArchiveFetcher {
 				
 	public final String web_page = "http://www.loto49.ro/arhiva-loto49.php";
 	
@@ -45,7 +45,7 @@ public class ArchiveFetcher {
 	
 	public static void main (String...args) throws IOException {	
 		//small local tests
-		ArchiveFetcher af = new ArchiveFetcher();
+		WebArchiveFetcher af = new WebArchiveFetcher();
 		ArrayList<String[]> new_games = af.fetchNewLoto649(1900);
 		/*
 		 * for(int i = 0; i< af.target_data.size();i++)

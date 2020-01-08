@@ -30,15 +30,15 @@ public class GameCore {
 	
 	public void importResultsFromWebArchive649() throws SQLException, IOException {
 		DbOps db = new DbOps();
-		ArchiveFetcher af = new ArchiveFetcher();
+		WebArchiveFetcher af = new WebArchiveFetcher();
 		
 		db.insertArchive649NewLines(af);
 	}
 	
-	public void refillArchive649() throws SQLException, IOException {
-		DbOps db = new DbOps();
-		ArchiveFetcher af = new ArchiveFetcher();
-		
+	public void refillArchive649() throws SQLException, IOException {		
+		WebArchiveFetcher af = new WebArchiveFetcher();
+		DbScriptReader dsr = new DbScriptReader();
+		DbOps db = new DbOps(dsr);
 		db.refillArchive649(af);
 	}
 	

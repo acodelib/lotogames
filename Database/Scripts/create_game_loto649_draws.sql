@@ -9,4 +9,3 @@ CREATE TABLE game_loto649_draws (
 	n5 INTEGER,
 	n6 INTEGER
 );
-
